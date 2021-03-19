@@ -26,8 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write src/**/*.ts{,x}",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "format": "prettier --write \"src/**/*.+(ts|tsx)\"",
+    "lint": "tsc && eslint \"src/**/*.+(ts|tsx)\""
   },
   "eslintConfig": {
     "extends": [

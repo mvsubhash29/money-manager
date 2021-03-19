@@ -1,7 +1,11 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
-import { fetchCategoriesReject, fetchCategoriesResolve } from '../actions/categorySettings.action';
-import { FETCH_CATEGORIES } from '../actions/types';
-import { fetchCategoryService } from './categorySettings.service';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {call, put, takeEvery} from '@redux-saga/core/effects';
+import {
+  fetchCategoriesReject,
+  fetchCategoriesResolve
+} from '../actions/categorySettings.action';
+import {FETCH_CATEGORIES} from '../actions/types';
+import {fetchCategoryService} from './categorySettings.service';
 
 function* fetchCategorySettings() {
   try {
