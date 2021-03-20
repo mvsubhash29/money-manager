@@ -1,0 +1,28 @@
+name: Build and Deploy
+on: 
+  push:
+    # TODO: Check for the path if we need to have "src/**/**" instead of only component folder
+    paths: ["stories/**", "src/components/**"] # Trigger the action only when files change in the folders defined here
+jobs:
+  build-and-deploy:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: | # Install npm packages and build the Storybook files
+          yarn install
+          yarn run build-storybook
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: storybook-static # The folder that the build-storybook script generates files.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+          TARGET_FOLDER: storybook # The folder that we serve our Storybook files from
