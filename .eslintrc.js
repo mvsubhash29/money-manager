@@ -27,8 +27,11 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'import/no-extraneous-dependencies': ['error',  {'devDependencies': true}],
+    'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
     'linebreak-style': 'off',
+    'react/prop-types': 'off',
     'prettier/prettier': [
       'error',
       {
