@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "./static/css/main.80d09ada.chunk.css",
-    "main.js": "./main.4b80af0bbb8ac8f3078e.bundle.js",
+    "main.js": "./main.35638696861631271584.bundle.js",
     "main.css.map": "./static/css/main.80d09ada.chunk.css.map",
-    "main.js.map": "./main.4b80af0bbb8ac8f3078e.bundle.js.map",
-    "runtime~main.js": "./runtime~main.4b80af0bbb8ac8f3078e.bundle.js",
-    "runtime~main.js.map": "./runtime~main.4b80af0bbb8ac8f3078e.bundle.js.map",
-    "vendors~main.js": "./vendors~main.4b80af0bbb8ac8f3078e.bundle.js",
-    "vendors~main.js.map": "./vendors~main.4b80af0bbb8ac8f3078e.bundle.js.map",
+    "main.js.map": "./main.35638696861631271584.bundle.js.map",
+    "runtime~main.js": "./runtime~main.35638696861631271584.bundle.js",
+    "runtime~main.js.map": "./runtime~main.35638696861631271584.bundle.js.map",
+    "vendors~main.js": "./vendors~main.35638696861631271584.bundle.js",
+    "vendors~main.js.map": "./vendors~main.35638696861631271584.bundle.js.map",
     "iframe.html": "./iframe.html",
     "static/media/code-brackets.2e1112d7.svg": "./static/media/code-brackets.2e1112d7.svg",
     "static/media/colors.a4bd0486.svg": "./static/media/colors.a4bd0486.svg",
@@ -17,12 +17,12 @@
     "static/media/plugin.d494b228.svg": "./static/media/plugin.d494b228.svg",
     "static/media/repo.6d496322.svg": "./static/media/repo.6d496322.svg",
     "static/media/stackalt.dba9fbb3.svg": "./static/media/stackalt.dba9fbb3.svg",
-    "vendors~main.4b80af0bbb8ac8f3078e.bundle.js.LICENSE.txt": "./vendors~main.4b80af0bbb8ac8f3078e.bundle.js.LICENSE.txt"
+    "vendors~main.35638696861631271584.bundle.js.LICENSE.txt": "./vendors~main.35638696861631271584.bundle.js.LICENSE.txt"
   },
   "entrypoints": [
-    "runtime~main.4b80af0bbb8ac8f3078e.bundle.js",
-    "vendors~main.4b80af0bbb8ac8f3078e.bundle.js",
+    "runtime~main.35638696861631271584.bundle.js",
+    "vendors~main.35638696861631271584.bundle.js",
     "static/css/main.80d09ada.chunk.css",
-    "main.4b80af0bbb8ac8f3078e.bundle.js"
+    "main.35638696861631271584.bundle.js"
   ]
 }
