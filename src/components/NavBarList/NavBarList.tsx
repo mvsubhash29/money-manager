@@ -8,10 +8,10 @@ export const NavBarList = () => {
   return (
     <List>
       {[
-        {name: 'Home', url: '/'},
+        {name: 'Dashboard', url: '/dashboard'},
         {name: 'Category Settings', url: '/category-settings'},
         {name: 'About', url: '/about'},
-        {name: 'Dashboard', url: '/dashboard'}
+        {name: 'Home', url: '/home'}
       ].map((menu, index) => (
         <Link to={menu.url}>
           <ListItem button key={menu.url}>
