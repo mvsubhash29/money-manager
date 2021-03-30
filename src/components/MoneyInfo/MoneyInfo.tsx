@@ -8,6 +8,7 @@ import {
   Typography
 } from '@material-ui/core';
 import {green} from '@material-ui/core/colors';
+import {LedgerDailyDetails} from '../../routes/Dashboard/types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,14 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export interface MoneyInfoProps {
-  categoryName: string;
-  amount: number;
-  isExpense: boolean;
-}
-
-export const MoneyInfo = (props: MoneyInfoProps) => {
-  const {categoryName, amount, isExpense} = props;
+export const MoneyInfo = (props: LedgerDailyDetails) => {
+  const {description, amount, isExpense} = props;
   const classes = useStyles();
 
   return (
@@ -51,7 +46,7 @@ export const MoneyInfo = (props: MoneyInfoProps) => {
           variant='body2'
           component='p'
         >
-          {categoryName}
+          {description}
         </Typography>
       </Box>
       <Typography color='textSecondary'>

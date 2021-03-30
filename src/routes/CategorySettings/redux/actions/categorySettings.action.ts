@@ -1,8 +1,8 @@
 import {
   CategorySettingsActionType,
   FETCH_CATEGORIES,
-  FETCH_CATEGORIES_REJECT,
-  FETCH_CATEGORIES_RESOLVE
+  FETCH_CATEGORIES_REJECTED,
+  FETCH_CATEGORIES_RESOLVED
 } from './types';
 
 export function fetchCategories(): CategorySettingsActionType {
@@ -13,14 +13,14 @@ export function fetchCategories(): CategorySettingsActionType {
 
 export function fetchCategoriesResolve(payload: string[]) {
   return {
-    type: FETCH_CATEGORIES_RESOLVE,
+    type: FETCH_CATEGORIES_RESOLVED,
     payload
   };
 }
 
 export function fetchCategoriesReject(error: Error) {
   return {
-    type: FETCH_CATEGORIES_REJECT,
+    type: FETCH_CATEGORIES_REJECTED,
     error
   };
 }

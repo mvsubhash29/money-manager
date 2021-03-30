@@ -14,8 +14,8 @@ export const NavBarList = () => {
         {name: 'Home', url: '/home'},
         {name: 'Entry Form', url: '/form'}
       ].map((menu, index) => (
-        <Link to={menu.url}>
-          <ListItem button key={menu.url}>
+        <Link key={menu.url} to={menu.url}>
+          <ListItem button>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
