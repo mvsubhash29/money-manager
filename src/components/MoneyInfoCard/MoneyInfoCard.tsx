@@ -39,6 +39,7 @@ export const MoneyInfoCard = (props: MoneyInfoCardProps) => {
   const classes = useStyles();
 
   return (
+    // TODO: Need to change card to paper ?
     <Card className={classes.root}>
       <CardContent>
         <Box display='flex' justifyContent='space-between'>
@@ -61,7 +62,6 @@ export const MoneyInfoCard = (props: MoneyInfoCardProps) => {
         <MoneyInfo amount={100} isExpense={false} categoryName='Food' />
         <Divider light />
         <MoneyInfo amount={1000} isExpense={false} categoryName='Transport' />
-        <Divider light />
       </CardContent>
     </Card>
   );

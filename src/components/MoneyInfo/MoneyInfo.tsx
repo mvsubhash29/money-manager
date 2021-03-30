@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(1)
     },
     container: {
-      padding: theme.spacing(1)
+      '&:hover': {
+        backgroundColor: theme.palette.divider
+      },
+      padding: theme.spacing(1),
+      cursor: 'pointer'
     }
   })
 );
