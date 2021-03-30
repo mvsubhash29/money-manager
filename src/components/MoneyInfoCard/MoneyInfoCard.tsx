@@ -10,6 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 import {MoneyInfo} from '../MoneyInfo';
+import {LedgerDetailsType} from '../../routes/Dashboard/types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,19 +24,15 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1)
     },
     root: {
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
+      margin: 'auto',
+      maxWidth: 500
     }
   })
 );
 
-export interface MoneyInfoCardProps {
-  date: string;
-  isIncome: boolean;
-  totalAmount: number;
-}
-
-export const MoneyInfoCard = (props: MoneyInfoCardProps) => {
-  const {date, isIncome, totalAmount} = props;
+export const MoneyInfoCard = (props: LedgerDetailsType) => {
+  const {date, income, expenses, details} = props;
   const classes = useStyles();
 
   return (
@@ -50,18 +47,31 @@ export const MoneyInfoCard = (props: MoneyInfoCardProps) => {
           >
             {date}
           </Typography>
-          <Typography
-            className={classes.title}
-            color='textSecondary'
-            gutterBottom
-          >
-            {isIncome ? 'Income' : 'Expenses'} {totalAmount}
-          </Typography>
+          {income && (
+            <Typography
+              className={classes.title}
+              color='textSecondary'
+              gutterBottom
+            >
+              Income {income}
+            </Typography>
+          )}
+          {expenses && (
+            <Typography
+              className={classes.title}
+              color='textSecondary'
+              gutterBottom
+            >
+              Expenses {expenses}
+            </Typography>
+          )}
         </Box>
         <Divider />
-        <MoneyInfo amount={100} isExpense={false} categoryName='Food' />
-        <Divider light />
-        <MoneyInfo amount={1000} isExpense={false} categoryName='Transport' />
+        {details &&
+          details.map((eachDayItemLedger, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <MoneyInfo {...eachDayItemLedger} key={index} />
+          ))}
       </CardContent>
     </Card>
   );

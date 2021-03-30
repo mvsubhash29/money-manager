@@ -3,14 +3,15 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {Story, Meta} from '@storybook/react/types-6-0';
 
-import {MoneyInfo as MoneyInfoComponent, MoneyInfoProps} from './MoneyInfo';
+import {MoneyInfo as MoneyInfoComponent} from './MoneyInfo';
+import {LedgerDailyDetails} from '../../routes/Dashboard/types';
 
 export default {
   title: 'Components/MoneyInfo',
   component: MoneyInfoComponent
 } as Meta;
 
-const Template: Story<MoneyInfoProps> = (args) => (
+const Template: Story<LedgerDailyDetails> = (args) => (
   <MoneyInfoComponent {...args} />
 );
 
@@ -18,5 +19,5 @@ export const MoneyInfo = Template.bind({});
 MoneyInfo.args = {
   amount: 100,
   isExpense: false,
-  categoryName: 'Food'
+  description: 'Food'
 };

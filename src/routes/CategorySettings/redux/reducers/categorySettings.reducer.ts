@@ -1,6 +1,6 @@
 import {
   CategorySettingsActionType,
-  FETCH_CATEGORIES_RESOLVE
+  FETCH_CATEGORIES_RESOLVED
 } from '../actions/types';
 
 export function categorySettingsReducer(
@@ -8,7 +8,7 @@ export function categorySettingsReducer(
   action: CategorySettingsActionType
 ) {
   switch (action.type) {
-    case FETCH_CATEGORIES_RESOLVE:
+    case FETCH_CATEGORIES_RESOLVED:
       return action.payload;
     default:
       return state;
