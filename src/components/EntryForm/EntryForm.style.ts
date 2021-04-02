@@ -4,6 +4,9 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     btn: {
       marginTop: theme.spacing(2)
+    },
+    root: {
+      padding: theme.spacing(2)
     }
   })
 );

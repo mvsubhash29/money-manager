@@ -11,8 +11,7 @@ export const NavBarList = () => {
         {name: 'Dashboard', url: '/dashboard'},
         {name: 'Category Settings', url: '/category-settings'},
         {name: 'About', url: '/about'},
-        {name: 'Home', url: '/home'},
-        {name: 'Entry Form', url: '/form'}
+        {name: 'Home', url: '/home'}
       ].map((menu, index) => (
         <Link key={menu.url} to={menu.url}>
           <ListItem button>

@@ -3,15 +3,15 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {Story, Meta} from '@storybook/react/types-6-0';
 
-import {MoneyInfo as MoneyInfoComponent} from './MoneyInfo';
-import {LedgerDailyDetails} from '../../routes/Dashboard/types';
+import {MoneyInfo as MoneyInfoComponent, MoneyInfoProps} from './MoneyInfo';
 
 export default {
   title: 'Components/MoneyInfo',
-  component: MoneyInfoComponent
+  component: MoneyInfoComponent,
+  argTypes: {onLedgerEntryClick: {action: 'clicked'}}
 } as Meta;
 
-const Template: Story<LedgerDailyDetails> = (args) => (
+const Template: Story<MoneyInfoProps> = (args) => (
   <MoneyInfoComponent {...args} />
 );
 

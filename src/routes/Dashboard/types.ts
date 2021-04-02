@@ -15,3 +15,9 @@ export interface LedgerDailyDetails {
   amount: number;
   isExpense: boolean;
 }
+
+export interface SelectedLedgerEntry {
+  date: string;
+  ledger: LedgerDailyDetails;
+  showDetailInfo: boolean;
+}

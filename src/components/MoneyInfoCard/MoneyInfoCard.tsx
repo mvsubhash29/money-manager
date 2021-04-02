@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import {
   Box,
   Card,
@@ -10,7 +11,11 @@ import {
   Typography
 } from '@material-ui/core';
 import {MoneyInfo} from '../MoneyInfo';
-import {LedgerDetailsType} from '../../routes/Dashboard/types';
+import {
+  LedgerDailyDetails,
+  LedgerDetailsType
+} from '../../routes/Dashboard/types';
+import {selectedLedgerEntry} from '../../routes/Dashboard/redux/actions/selectedLedger.action';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MoneyInfoCard = (props: LedgerDetailsType) => {
   const {date, income, expenses, details} = props;
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  function onLedgerEntryClick(ledger: LedgerDailyDetails) {
+    dispatch(selectedLedgerEntry({date, ledger, showDetailInfo: true}));
+  }
 
   return (
     // TODO: Need to change card to paper ?
@@ -69,8 +79,12 @@ export const MoneyInfoCard = (props: LedgerDetailsType) => {
         <Divider />
         {details &&
           details.map((eachDayItemLedger, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <MoneyInfo {...eachDayItemLedger} key={index} />
+            <MoneyInfo
+              onLedgerEntryClick={onLedgerEntryClick}
+              {...eachDayItemLedger}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+            />
           ))}
       </CardContent>
     </Card>
