@@ -2,20 +2,22 @@ import React from 'react';
 import {useFormik} from 'formik';
 import {Button, Grid, Paper, TextField} from '@material-ui/core';
 
-import {validationSchema} from './EntryForm.schema';
-import {useStyles} from './EntryForm.style';
-import {LedgerFormProps} from './types';
+import {validationSchema} from './LedgerForm.schema';
+import {useStyles} from './LedgerForm.style';
+import {LedgerFormProps, LedgerFormValues} from './types';
 
-export const EntryForm: React.FC<LedgerFormProps> = ({
-  initialValues,
-  onSubmit
-}) => {
+export const LedgerForm: React.FC<LedgerFormProps> = (props) => {
+  const {initialValues, onSubmit, onCancel} = props;
   const classes = useStyles();
+
+  function onFormSubmit(values: LedgerFormValues) {
+    onSubmit(values);
+  }
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit
+    onSubmit: onFormSubmit
   });
 
   return (
@@ -48,7 +50,8 @@ export const EntryForm: React.FC<LedgerFormProps> = ({
             className={classes.btn}
             color='primary'
             variant='outlined'
-            type='submit'
+            type='button'
+            onClick={onCancel}
           >
             Back
           </Button>

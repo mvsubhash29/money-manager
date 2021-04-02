@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {put, takeEvery, call} from '@redux-saga/core/effects';
-import {LedgerFormProps} from '../../../../components/EntryForm/types';
+import {LedgerFormProps} from '../../../../components/LedgerForm/types';
 import {
   ledgerFormSubmitRejected,
   ledgerFormSubmitResolved

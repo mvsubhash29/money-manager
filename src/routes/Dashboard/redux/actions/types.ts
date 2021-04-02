@@ -1,4 +1,4 @@
-import {LedgerFormValues} from '../../../../components/EntryForm/types';
+import {LedgerFormValues} from '../../../../components/LedgerForm';
 import {LedgerDetailsType, LedgerPayloadType} from '../../types';
 
 export const FETCH_LEDGER_DETAILS = 'FETCH_LEDGER_DETAILS';
