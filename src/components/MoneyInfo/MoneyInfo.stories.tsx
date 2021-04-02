@@ -19,5 +19,6 @@ export const MoneyInfo = Template.bind({});
 MoneyInfo.args = {
   amount: 100,
   isExpense: false,
-  description: 'Food'
+  description: 'Food',
+  ledgerType: 'income'
 };

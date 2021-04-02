@@ -25,7 +25,9 @@ export const Dashboard = () => {
 
   const [initialValues, setInitialValues] = useState({
     description: '',
-    amount: 0
+    amount: 0,
+    ledgerType: 'expense',
+    categoryName: ''
   });
 
   useEffect(() => {
@@ -62,7 +64,12 @@ export const Dashboard = () => {
   }, []);
 
   function onAddLedgerEntry() {
-    setInitialValues({description: '', amount: 0});
+    setInitialValues({
+      description: '',
+      amount: 0,
+      ledgerType: 'expense',
+      categoryName: ''
+    });
     setShowForm(!showForm);
     setFormMode('add');
   }

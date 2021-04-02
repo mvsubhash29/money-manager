@@ -18,7 +18,9 @@ const Template: Story<LedgerFormProps> = (args) => (
 export const LedgerForm = Template.bind({});
 LedgerForm.args = {
   initialValues: {
+    categoryName: 'transport',
     amount: 200,
-    description: 'Transport'
+    description: 'Transport',
+    ledgerType: 'Expense'
   }
 };

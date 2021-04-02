@@ -33,10 +33,19 @@ export interface MoneyInfoProps {
   amount: number;
   description: string;
   isExpense: boolean;
+  ledgerType: string;
+  categoryName: string;
 }
 
 export const MoneyInfo = (props: MoneyInfoProps) => {
-  const {description, amount, isExpense, onLedgerEntryClick} = props;
+  const {
+    description,
+    amount,
+    isExpense,
+    ledgerType,
+    categoryName,
+    onLedgerEntryClick
+  } = props;
   const classes = useStyles();
 
   return (
@@ -45,7 +54,15 @@ export const MoneyInfo = (props: MoneyInfoProps) => {
       display='flex'
       alignItems='center'
       justifyContent='space-between'
-      onClick={() => onLedgerEntryClick({amount, description, isExpense})}
+      onClick={() =>
+        onLedgerEntryClick({
+          amount,
+          description,
+          isExpense,
+          ledgerType,
+          categoryName
+        })
+      }
     >
       <Box display='flex' alignItems='center'>
         <Icon style={{color: green[500]}}>start</Icon>

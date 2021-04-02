@@ -12,16 +12,22 @@ export function fetchLedgerDetailsService(): Promise<LedgerDetailsType[]> {
           {
             description: 'Salary',
             amount: 500,
+            ledgerType: 'income',
+            categoryName: 'salary',
             isExpense: false
           },
           {
             description: 'Food', // categoryName if not description was entered by the user
             amount: 10,
+            ledgerType: 'expense',
+            categoryName: 'food',
             isExpense: true
           },
           {
             description: 'Transport',
             amount: 30,
+            ledgerType: 'expense',
+            categoryName: 'transport',
             isExpense: true
           }
         ]
@@ -33,11 +39,15 @@ export function fetchLedgerDetailsService(): Promise<LedgerDetailsType[]> {
           {
             description: 'Food', // categoryName if not description was entered by the user
             amount: 40,
+            ledgerType: 'expense',
+            categoryName: 'food',
             isExpense: true
           },
           {
             description: 'Transport',
             amount: 60,
+            ledgerType: 'expense',
+            categoryName: 'transport',
             isExpense: true
           }
         ]
