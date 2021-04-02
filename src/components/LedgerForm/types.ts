@@ -6,4 +6,5 @@ export interface LedgerFormValues {
 export interface LedgerFormProps {
   initialValues: LedgerFormValues;
   onSubmit: (values: LedgerFormValues) => void;
+  onCancel: () => void;
 }

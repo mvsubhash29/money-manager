@@ -8,9 +8,8 @@ import {LedgerDetailsType, LedgerPayloadType} from './types';
 import {RootState} from '../../redux/rootReducer';
 import {MoneyInfoDetailCard} from '../../components/MoneyInfoDetailCard/MoneyInfoDetailCard';
 import {clearLedgerEntry} from './redux/actions/selectedLedger.action';
-import {EntryForm} from '../../components/EntryForm/EntryForm';
+import {LedgerForm, LedgerFormValues} from '../../components/LedgerForm';
 import {useStyles} from './Dashboard.styles';
-import {LedgerFormValues} from '../../components/EntryForm/types';
 import {ledgerFormSubmit} from './redux/actions/ledgerForm.action';
 
 export const Dashboard = () => {
@@ -72,7 +71,11 @@ export const Dashboard = () => {
     <Paper elevation={0} className={classes.root}>
       <Button onClick={onAddLedgerEntry}>{showForm ? 'Cancel' : 'Add'}</Button>
       {showForm && (
-        <EntryForm onSubmit={onSubmit} initialValues={initialValues} />
+        <LedgerForm
+          onCancel={() => {}}
+          onSubmit={onSubmit}
+          initialValues={initialValues}
+        />
       )}
       {!showForm &&
         ledgerDetails &&
