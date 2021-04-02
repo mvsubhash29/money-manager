@@ -28,8 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export interface MoneyInfoProps extends LedgerDailyDetails {
+export interface MoneyInfoProps {
   onLedgerEntryClick: (ledgerEntryDetails: LedgerDailyDetails) => void;
+  amount: number;
+  description: string;
+  isExpense: boolean;
 }
 
 export const MoneyInfo = (props: MoneyInfoProps) => {
@@ -42,7 +45,7 @@ export const MoneyInfo = (props: MoneyInfoProps) => {
       display='flex'
       alignItems='center'
       justifyContent='space-between'
-      onClick={() => onLedgerEntryClick(props)}
+      onClick={() => onLedgerEntryClick({amount, description, isExpense})}
     >
       <Box display='flex' alignItems='center'>
         <Icon style={{color: green[500]}}>start</Icon>

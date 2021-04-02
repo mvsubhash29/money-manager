@@ -10,6 +10,8 @@ import {MoneyInfoDetailCard} from '../../components/MoneyInfoDetailCard/MoneyInf
 import {clearLedgerEntry} from './redux/actions/selectedLedger.action';
 import {EntryForm} from '../../components/EntryForm/EntryForm';
 import {useStyles} from './Dashboard.styles';
+import {LedgerFormValues} from '../../components/EntryForm/types';
+import {ledgerFormSubmit} from './redux/actions/ledgerForm.action';
 
 export const Dashboard = () => {
   const classes = useStyles();
@@ -20,6 +22,7 @@ export const Dashboard = () => {
   );
 
   const [showForm, setShowForm] = useState(false);
+  const [formMode, setFormMode] = useState('add');
 
   const [initialValues, setInitialValues] = useState({
     description: '',
@@ -47,6 +50,11 @@ export const Dashboard = () => {
 
   function onMoneyInfoDetailCardEdit() {
     setShowForm(!showForm);
+    setFormMode('edit');
+  }
+
+  function onSubmit(payload: LedgerFormValues) {
+    dispatch(ledgerFormSubmit({payload, formMode}));
   }
 
   useEffect(() => {
@@ -55,13 +63,17 @@ export const Dashboard = () => {
   }, []);
 
   function onAddLedgerEntry() {
+    setInitialValues({description: '', amount: 0});
     setShowForm(!showForm);
+    setFormMode('add');
   }
 
   return (
     <Paper elevation={0} className={classes.root}>
       <Button onClick={onAddLedgerEntry}>{showForm ? 'Cancel' : 'Add'}</Button>
-      {showForm && <EntryForm initialValues={initialValues} />}
+      {showForm && (
+        <EntryForm onSubmit={onSubmit} initialValues={initialValues} />
+      )}
       {!showForm &&
         ledgerDetails &&
         selectedLedgerEntry &&

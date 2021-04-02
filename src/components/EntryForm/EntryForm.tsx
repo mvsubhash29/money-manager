@@ -1,22 +1,21 @@
 import React from 'react';
 import {useFormik} from 'formik';
 import {Button, Grid, Paper, TextField} from '@material-ui/core';
+
 import {validationSchema} from './EntryForm.schema';
 import {useStyles} from './EntryForm.style';
-import {LedgerDailyDetails} from '../../routes/Dashboard/types';
+import {LedgerFormProps} from './types';
 
-export interface EntryFormProps {
-  initialValues: Omit<LedgerDailyDetails, 'isExpense'>;
-}
-
-export const EntryForm: React.FC<EntryFormProps> = ({initialValues}) => {
+export const EntryForm: React.FC<LedgerFormProps> = ({
+  initialValues,
+  onSubmit
+}) => {
   const classes = useStyles();
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onSubmit: (values) => {}
+    onSubmit
   });
 
   return (
