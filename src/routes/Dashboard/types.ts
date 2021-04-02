@@ -14,6 +14,8 @@ export interface LedgerDailyDetails {
   description: string;
   amount: number;
   isExpense: boolean;
+  ledgerType: string;
+  categoryName: string;
 }
 
 export interface SelectedLedgerEntry {

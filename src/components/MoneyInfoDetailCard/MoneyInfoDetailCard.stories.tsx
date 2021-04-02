@@ -23,7 +23,9 @@ MoneyInfoDetailCard.args = {
   ledger: {
     amount: 100,
     isExpense: false,
-    description: 'Food'
+    description: 'Food',
+    ledgerType: 'income',
+    categoryName: 'food'
   },
   date: '03/02 Sun'
 };
