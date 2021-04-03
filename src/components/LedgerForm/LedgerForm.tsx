@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useFormik} from 'formik';
 import {
   Button,
@@ -15,14 +15,24 @@ import {
   Select,
   TextField
 } from '@material-ui/core';
+import {useSelector} from 'react-redux';
 
 import {validationSchema} from './LedgerForm.schema';
 import {useStyles} from './LedgerForm.style';
 import {LedgerFormProps, LedgerFormValues} from './types';
+import {RootState} from '../../redux/types';
+import {
+  CategoryResponseType,
+  CategoryType
+} from '../../routes/CategorySettings/redux/actions/types';
 
 export const LedgerForm: React.FC<LedgerFormProps> = (props) => {
   const {initialValues, onSubmit, onCancel} = props;
   const classes = useStyles();
+
+  const categories = useSelector((state: RootState) => state.categories);
+
+  const [categoryItems, setCategoriesItems] = useState<CategoryType[]>();
 
   function onFormSubmit(values: LedgerFormValues) {
     onSubmit(values);
@@ -34,12 +44,25 @@ export const LedgerForm: React.FC<LedgerFormProps> = (props) => {
     onSubmit: onFormSubmit
   });
 
+  const ref = useRef(formik.values.ledgerType);
+
+  if (ref.current !== formik.values.ledgerType) {
+    ref.current = formik.values.ledgerType;
+  }
+
+  useEffect(() => {
+    if (ref.current) {
+      setCategoriesItems(categories[ref.current as keyof CategoryResponseType]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref.current]);
+
   return (
     <Paper className={classes.root}>
       <form onSubmit={formik.handleSubmit}>
         <FormControl component='fieldset'>
           <FormLabel component='legend'>
-            Choose your ledger entry type
+            Choose your Ledger entry type
           </FormLabel>
           <RadioGroup
             aria-label='ledger type'
@@ -76,9 +99,14 @@ export const LedgerForm: React.FC<LedgerFormProps> = (props) => {
             value={formik.values.categoryName}
             onChange={formik.handleChange}
           >
-            <MenuItem value='salary'>Salary</MenuItem>
-            <MenuItem value='food'>Food</MenuItem>
-            <MenuItem value='transport'>Transport</MenuItem>
+            {categoryItems &&
+              categoryItems.map((category: CategoryType) => {
+                return (
+                  <MenuItem key={category.name} value={category.name}>
+                    {category.title}
+                  </MenuItem>
+                );
+              })}
           </Select>
           <FormHelperText>
             {formik.touched.categoryName && formik.errors.categoryName}

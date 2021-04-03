@@ -5,7 +5,7 @@ import {Button, Paper} from '@material-ui/core';
 import {MoneyInfoCard} from '../../components/MoneyInfoCard';
 import {fetchLedgerDetails} from './redux/actions/dashboard.action';
 import {LedgerDetailsType, LedgerPayloadType} from './types';
-import {RootState} from '../../redux/rootReducer';
+import {RootState} from '../../redux/types';
 import {MoneyInfoDetailCard} from '../../components/MoneyInfoDetailCard/MoneyInfoDetailCard';
 import {clearLedgerEntry} from './redux/actions/selectedLedger.action';
 import {LedgerForm, LedgerFormValues} from '../../components/LedgerForm';

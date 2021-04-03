@@ -23,8 +23,9 @@ export type CategorySettingsActionType =
 
 export interface CategoryType {
   icon: string;
-  categoryName: string;
+  name: string;
   type?: string;
+  title: string;
 }
 
 export interface CategoryResponseType {

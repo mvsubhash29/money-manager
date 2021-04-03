@@ -6,5 +6,3 @@ export const rootReducer = combineReducers({
   categories: categorySettingsReducer,
   dashboard: dashboardRootReducer
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

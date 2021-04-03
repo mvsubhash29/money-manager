@@ -32,6 +32,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'linebreak-style': 'off',
     'react/prop-types': 'off',
+    'import/no-cycle': 'off', // Need to check and remove
     'prettier/prettier': [
       'error',
       {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../redux/rootReducer';
+import {RootState} from '../../redux/types';
 import {CategoryType} from './redux/actions/types';
 
 export const CategorySettings = () => {
@@ -10,9 +10,7 @@ export const CategorySettings = () => {
     <>
       <h1>CategorySettings Page</h1>
       {categories &&
-        categories.expense.map(
-          (category: CategoryType) => category.categoryName
-        )}
+        categories.expense.map((category: CategoryType) => category.title)}
     </>
   );
 };

@@ -7,19 +7,22 @@ export function fetchCategoryService(): Promise<CategoryResponseType> {
       expense: [
         {
           type: 'expense',
-          categoryName: 'Food',
+          title: 'Food',
+          name: 'food',
           icon: 'star'
         },
         {
           type: 'expense',
-          categoryName: 'Transport',
+          title: 'Transport',
+          name: 'transport',
           icon: 'transport'
         }
       ],
       income: [
         {
           type: 'income',
-          categoryName: 'Salary',
+          title: 'Salary',
+          name: 'salary',
           icon: 'salary'
         }
       ]

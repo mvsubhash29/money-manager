@@ -1,4 +1,4 @@
-import {LedgerFormProps} from '../../../../components/LedgerForm';
+import {LedgerFormProps} from '../../../../components/LedgerForm/types';
 import {
   LedgerFormPayload,
   LEDGER_FORM_SUBMIT,
