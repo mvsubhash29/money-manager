@@ -1,21 +1,18 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/rootReducer';
-import {fetchCategories} from './redux/actions/categorySettings.action';
+import {CategoryType} from './redux/actions/types';
 
 export const CategorySettings = () => {
-  const dispatch = useDispatch();
   const categories = useSelector((state: RootState) => state.categories);
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
       <h1>CategorySettings Page</h1>
-      {categories && categories.map((category: string) => category)}
+      {categories &&
+        categories.expense.map(
+          (category: CategoryType) => category.categoryName
+        )}
     </>
   );
 };

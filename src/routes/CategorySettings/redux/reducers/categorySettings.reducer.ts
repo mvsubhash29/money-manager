@@ -1,10 +1,16 @@
 import {
+  CategoryResponseType,
   CategorySettingsActionType,
   FETCH_CATEGORIES_RESOLVED
 } from '../actions/types';
 
+const initialValue = {
+  expense: [],
+  income: []
+};
+
 export function categorySettingsReducer(
-  state: string[] = [],
+  state: CategoryResponseType = initialValue,
   action: CategorySettingsActionType
 ) {
   switch (action.type) {

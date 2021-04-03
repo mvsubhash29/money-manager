@@ -8,7 +8,7 @@ interface FetchCategoriesAction {
 
 interface FetchCategoriesResolved {
   type: typeof FETCH_CATEGORIES_RESOLVED;
-  payload: string[];
+  payload: CategoryResponseType;
 }
 
 interface FetchCategoriesReject {
@@ -20,3 +20,14 @@ export type CategorySettingsActionType =
   | FetchCategoriesAction
   | FetchCategoriesResolved
   | FetchCategoriesReject;
+
+export interface CategoryType {
+  icon: string;
+  categoryName: string;
+  type?: string;
+}
+
+export interface CategoryResponseType {
+  expense: CategoryType[];
+  income: CategoryType[];
+}

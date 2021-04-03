@@ -1,4 +1,5 @@
 import {
+  CategoryResponseType,
   CategorySettingsActionType,
   FETCH_CATEGORIES,
   FETCH_CATEGORIES_REJECTED,
@@ -11,7 +12,7 @@ export function fetchCategories(): CategorySettingsActionType {
   };
 }
 
-export function fetchCategoriesResolve(payload: string[]) {
+export function fetchCategoriesResolve(payload: CategoryResponseType) {
   return {
     type: FETCH_CATEGORIES_RESOLVED,
     payload
