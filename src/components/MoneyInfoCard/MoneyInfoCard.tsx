@@ -10,7 +10,7 @@ import {
   Theme,
   Typography
 } from '@material-ui/core';
-import {MoneyInfo} from '../MoneyInfo';
+import {LedgerTile} from '../LedgerTile';
 import {
   LedgerDailyDetails,
   LedgerDetailsType
@@ -78,10 +78,10 @@ export const MoneyInfoCard = (props: LedgerDetailsType) => {
         </Box>
         <Divider />
         {details &&
-          details.map((eachDayItemLedger, index) => (
-            <MoneyInfo
+          details.map((ledger, index) => (
+            <LedgerTile
               onLedgerEntryClick={onLedgerEntryClick}
-              {...eachDayItemLedger}
+              ledger={ledger}
               // eslint-disable-next-line react/no-array-index-key
               key={index}
             />
