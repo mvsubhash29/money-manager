@@ -1,18 +1,9 @@
 import React from 'react';
 import {Button, Grid, Paper, Typography} from '@material-ui/core';
-import {useStyles} from './MoneyInfoDetailCard.styles';
-import {LedgerDailyDetails} from '../../routes/Dashboard/types';
+import {useStyles} from './LedgerDetail.styles';
+import {LedgerDetailProps} from './types';
 
-export interface MoneyInfoDetailCardProps {
-  onEdit: () => void;
-  onBack: () => void;
-  ledger: LedgerDailyDetails;
-  date: string;
-}
-
-export const MoneyInfoDetailCard: React.FC<MoneyInfoDetailCardProps> = (
-  props
-) => {
+export const LedgerDetail: React.FC<LedgerDetailProps> = (props) => {
   const {onEdit, onBack, date, ledger} = props;
   const {amount, description, isExpense} = ledger;
 

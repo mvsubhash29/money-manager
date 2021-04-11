@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Paper} from '@material-ui/core';
 
-import {MoneyInfoCard} from '../../components/MoneyInfoCard';
 import {fetchLedgerDetails} from './redux/actions/dashboard.action';
 import {LedgerDetailsType, LedgerPayloadType} from './types';
 import {RootState} from '../../redux/types';
-import {MoneyInfoDetailCard} from '../../components/MoneyInfoDetailCard/MoneyInfoDetailCard';
 import {clearLedgerEntry} from './redux/actions/selectedLedger.action';
 import {LedgerForm, LedgerFormValues} from '../../components/LedgerForm';
 import {useStyles} from './Dashboard.styles';
 import {ledgerFormSubmit} from './redux/actions/ledgerForm.action';
+import {LedgerDetail} from '../../components/LedgerDetail';
+import {LedgerDayListCard} from '../../components/LedgerDayListCard';
 
 export const Dashboard = () => {
   const classes = useStyles();
@@ -89,12 +89,12 @@ export const Dashboard = () => {
         selectedLedgerEntry &&
         !selectedLedgerEntry.showDetailInfo &&
         ledgerDetails.map((ledgerItem: LedgerDetailsType) => (
-          <MoneyInfoCard {...ledgerItem} key={ledgerItem.date} />
+          <LedgerDayListCard {...ledgerItem} key={ledgerItem.date} />
         ))}
       {!showForm &&
         selectedLedgerEntry &&
         selectedLedgerEntry.showDetailInfo && (
-          <MoneyInfoDetailCard
+          <LedgerDetail
             ledger={ledger}
             date={date}
             onBack={onMoneyInfoDetailCardBack}

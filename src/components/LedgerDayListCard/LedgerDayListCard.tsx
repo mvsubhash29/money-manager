@@ -16,27 +16,9 @@ import {
   LedgerDetailsType
 } from '../../routes/Dashboard/types';
 import {selectedLedgerEntry} from '../../routes/Dashboard/redux/actions/selectedLedger.action';
+import {useStyles} from './LedgerDayListCard.style';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    title: {
-      fontSize: 14
-    },
-    categoryName: {
-      marginLeft: theme.spacing(1)
-    },
-    container: {
-      padding: theme.spacing(1)
-    },
-    root: {
-      marginBottom: theme.spacing(2),
-      margin: 'auto',
-      maxWidth: 500
-    }
-  })
-);
-
-export const MoneyInfoCard = (props: LedgerDetailsType) => {
+export const LedgerDayListCard = (props: LedgerDetailsType) => {
   const {date, income, expenses, details} = props;
   const classes = useStyles();
   const dispatch = useDispatch();

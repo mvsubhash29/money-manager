@@ -3,23 +3,21 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {Story, Meta} from '@storybook/react/types-6-0';
 
-import {
-  MoneyInfoDetailCard as MoneyInfoDetailCardComponent,
-  MoneyInfoDetailCardProps
-} from './MoneyInfoDetailCard';
+import {LedgerDetail as LedgerDetailComponent} from './LedgerDetail';
+import {LedgerDetailProps} from './types';
 
 export default {
-  title: 'Components/MoneyInfoDetailCard',
-  component: MoneyInfoDetailCardComponent,
+  title: 'Components/LedgerDetail',
+  component: LedgerDetailComponent,
   argTypes: {onEdit: {action: 'clicked'}, onBack: {action: 'clicked'}}
 } as Meta;
 
-const Template: Story<MoneyInfoDetailCardProps> = (args) => (
-  <MoneyInfoDetailCardComponent {...args} />
+const Template: Story<LedgerDetailProps> = (args) => (
+  <LedgerDetailComponent {...args} />
 );
 
-export const MoneyInfoDetailCard = Template.bind({});
-MoneyInfoDetailCard.args = {
+export const LedgerDetail = Template.bind({});
+LedgerDetail.args = {
   ledger: {
     amount: 100,
     isExpense: false,
