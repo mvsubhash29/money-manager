@@ -1,15 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {
-  Box,
-  Card,
-  CardContent,
-  createStyles,
-  Divider,
-  makeStyles,
-  Theme,
-  Typography
-} from '@material-ui/core';
+import {Box, Card, CardContent, Divider, Typography} from '@material-ui/core';
+
 import {LedgerTile} from '../LedgerTile';
 import {
   LedgerDailyDetails,

@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
+import {AnyAction} from 'redux';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Paper} from '@material-ui/core';
 
 import {fetchLedgerDetails} from './redux/actions/dashboard.action';
-import {LedgerDetailsType, LedgerPayloadType} from './types';
+import {DashboardStateType, LedgerDetailsType} from './types';
 import {RootState} from '../../redux/types';
 import {clearLedgerEntry} from './redux/actions/selectedLedger.action';
 import {LedgerForm, LedgerFormValues} from '../../components/LedgerForm';
@@ -12,95 +13,112 @@ import {ledgerFormSubmit} from './redux/actions/ledgerForm.action';
 import {LedgerDetail} from '../../components/LedgerDetail';
 import {LedgerDayListCard} from '../../components/LedgerDayListCard';
 
-export const Dashboard = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const {ledgerDetails, selectedLedgerEntry} = useSelector(
-    (state: RootState) => state.dashboard
-  );
-
-  const [showForm, setShowForm] = useState(false);
-  const [formMode, setFormMode] = useState('add');
-
-  const [initialValues, setInitialValues] = useState({
+const initialDashboardState = {
+  formMode: 'add',
+  showForm: false,
+  selectedMonthAndYear: {
+    month: 'mar',
+    year: 2020
+  },
+  formValues: {
     description: '',
     amount: 0,
     ledgerType: 'expense',
     categoryName: ''
-  });
+  },
+  view: 'ldlc' // ledger dashboard
+};
+
+export const Dashboard = () => {
+  const classes = useStyles();
+  const dispatchReduxAction = useDispatch();
+
+  function reducer(state: DashboardStateType, action: AnyAction) {
+    switch (action.type) {
+      case 'ADD_LEDGER_ENTRY':
+        return {...state, formMode: 'add', view: 'lf'}; // add ledger
+      case 'EDIT_LEDGER_ENTRY':
+        return {...state, formMode: 'edit', view: 'lf'}; // edit ledger
+      case 'MONTH_YEAR_CHANGE':
+        return {...state, selectedMonthAndYear: {...action.payload}};
+      case 'LEDGER_DASHBOARD':
+        return {...state, view: 'ldlc'};
+      case 'LEDGER_FORM_CANCEL':
+        return {...state, view: state.formMode === 'edit' ? 'ld' : 'ldlc'};
+      case 'SET_LEDGER_VALUE':
+        return {...state, formValues: action.payload, view: 'ld'};
+      default:
+        return initialDashboardState;
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducer, initialDashboardState);
+
+  const {ledgerDetails, selectedLedgerEntry} = useSelector(
+    (rootstate: RootState) => rootstate.dashboard
+  );
 
   useEffect(() => {
-    setInitialValues(selectedLedgerEntry.ledger || {});
+    if (selectedLedgerEntry.ledger)
+      dispatch({
+        type: 'SET_LEDGER_VALUE',
+        payload: selectedLedgerEntry.ledger || {}
+      });
   }, [selectedLedgerEntry]);
 
   const {ledger, date} = selectedLedgerEntry;
-
-  const [
-    selectedMonthAndYear,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setSelectedMonthAndYear
-  ] = React.useState<LedgerPayloadType>({
-    month: 'mar',
-    year: 2020
-  });
 
   function onMoneyInfoDetailCardBack() {
     dispatch(clearLedgerEntry());
   }
 
   function onMoneyInfoDetailCardEdit() {
-    setShowForm(!showForm);
-    setFormMode('edit');
+    dispatch({type: 'EDIT_LEDGER_ENTRY'});
   }
 
-  function onSubmit(payload: LedgerFormValues) {
-    dispatch(ledgerFormSubmit({payload, formMode}));
+  function onFormSubmit(payload: LedgerFormValues) {
+    dispatchReduxAction(ledgerFormSubmit({payload, formMode: state.formMode}));
+  }
+
+  function onFormCancel() {
+    dispatch({type: 'LEDGER_FORM_CANCEL'});
   }
 
   useEffect(() => {
-    dispatch(fetchLedgerDetails(selectedMonthAndYear));
+    dispatchReduxAction(fetchLedgerDetails(state.selectedMonthAndYear));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function onAddLedgerEntry() {
-    setInitialValues({
-      description: '',
-      amount: 0,
-      ledgerType: 'expense',
-      categoryName: ''
-    });
-    setShowForm(!showForm);
-    setFormMode('add');
-  }
-
   return (
     <Paper elevation={0} className={classes.root}>
-      <Button onClick={onAddLedgerEntry}>{showForm ? 'Cancel' : 'Add'}</Button>
-      {showForm && (
+      {state.view === 'ldlc' && (
+        <Button onClick={() => dispatch({type: 'ADD_LEDGER_ENTRY'})}>
+          Add
+        </Button>
+      )}
+
+      {state.view === 'lf' && (
         <LedgerForm
-          onCancel={() => {}}
-          onSubmit={onSubmit}
-          initialValues={initialValues}
+          onCancel={onFormCancel}
+          onSubmit={onFormSubmit}
+          initialValues={state.formValues}
         />
       )}
-      {!showForm &&
+
+      {state.view === 'ldlc' &&
         ledgerDetails &&
-        selectedLedgerEntry &&
-        !selectedLedgerEntry.showDetailInfo &&
         ledgerDetails.map((ledgerItem: LedgerDetailsType) => (
           <LedgerDayListCard {...ledgerItem} key={ledgerItem.date} />
         ))}
-      {!showForm &&
-        selectedLedgerEntry &&
-        selectedLedgerEntry.showDetailInfo && (
-          <LedgerDetail
-            ledger={ledger}
-            date={date}
-            onBack={onMoneyInfoDetailCardBack}
-            onEdit={onMoneyInfoDetailCardEdit}
-          />
-        )}
+
+      {state.view === 'ld' && (
+        <LedgerDetail
+          ledger={ledger}
+          date={date}
+          onBack={onMoneyInfoDetailCardBack}
+          onEdit={onMoneyInfoDetailCardEdit}
+        />
+      )}
     </Paper>
   );
 };
