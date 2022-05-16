@@ -13,7 +13,7 @@ function* fetchLedgerDetails() {
     const response: LedgerDetailsType[] = yield call(fetchLedgerDetailsService);
     yield put(fetchLedgerDetailsResolved(response));
   } catch (error) {
-    yield put(fetchLedgerDetailsRejected(error));
+    yield put(fetchLedgerDetailsRejected(error as Error));
   }
 }
 

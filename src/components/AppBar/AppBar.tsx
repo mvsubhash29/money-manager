@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import clsx from 'clsx';
 import {
   Drawer,
@@ -7,14 +8,18 @@ import {
   Toolbar,
   Typography,
   useTheme,
-  IconButton
+  IconButton,
+  Button
 } from '@material-ui/core';
+import {Grid} from '@mui/material';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {useStyles} from './AppBar.style';
 import {NavBarList} from '../NavBarList/NavBarList';
+import {RootState} from '../../redux/types';
+import {logoutSuccess} from '../../routes/Login/redux/actions/login.action';
 
 interface AppBarProps {
   title: string;
@@ -22,8 +27,10 @@ interface AppBarProps {
 
 export const AppBar: React.FC<AppBarProps> = ({title, children}) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const {isAuthenticated} = useSelector((state: RootState) => state.login);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -43,18 +50,34 @@ export const AppBar: React.FC<AppBarProps> = ({title, children}) => {
         })}
       >
         <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap>
-            {title}
-          </Typography>
+          <Grid container>
+            <Grid item xs={10} display='flex' alignItems='center'>
+              <IconButton
+                color='inherit'
+                aria-label='open drawer'
+                onClick={handleDrawerOpen}
+                edge='start'
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant='h6' noWrap>
+                {title}
+              </Typography>
+            </Grid>
+
+            {isAuthenticated && (
+              <Grid item xs={2} alignItems='center' display='flex'>
+                <Button
+                  onClick={() => dispatch(logoutSuccess())}
+                  size='small'
+                  style={{color: '#fff', border: '1px solid #fff'}}
+                >
+                  Logout
+                </Button>
+              </Grid>
+            )}
+          </Grid>
         </Toolbar>
       </MUIAppBar>
       <Drawer

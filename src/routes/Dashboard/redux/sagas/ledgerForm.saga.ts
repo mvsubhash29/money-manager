@@ -17,7 +17,7 @@ export function* ledgerFormSubmit(action: LedgerFormSubmit) {
     );
     yield put(ledgerFormSubmitResolved(response));
   } catch (error) {
-    yield put(ledgerFormSubmitRejected(error));
+    yield put(ledgerFormSubmitRejected(error as Error));
   }
 }
 
