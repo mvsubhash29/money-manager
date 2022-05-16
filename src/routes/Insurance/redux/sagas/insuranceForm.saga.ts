@@ -5,10 +5,7 @@ import {
   insuranceFormSubmitRejected,
   insuranceFormSubmitResolved
 } from '../actions/insuranceForm.action';
-import {
-  InsuranceFormSubmit,
-  INSURANCE_FORM_SUBMIT
-} from '../types';
+import {InsuranceFormSubmit, INSURANCE_FORM_SUBMIT} from '../types';
 import {insuranceSubmitFormService} from './insuranceForm.service';
 
 export function* insuranceFormSubmit(action: InsuranceFormSubmit) {
