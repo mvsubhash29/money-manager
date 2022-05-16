@@ -7,7 +7,7 @@ import {useStyles} from './LedgerTile.style';
 
 export const LedgerTile: React.FC<LedgerTileProps> = (props) => {
   const {ledger, onLedgerEntryClick} = props;
-  const {description, isExpense, amount} = ledger;
+  const {description, ledgerType, amount} = ledger;
   const classes = useStyles();
 
   return (
@@ -29,7 +29,7 @@ export const LedgerTile: React.FC<LedgerTileProps> = (props) => {
         </Typography>
       </Box>
       <Typography color='textSecondary'>
-        {isExpense ? '-' : ''} {amount}
+        {ledgerType === 'expense' ? '-' : ''} {amount}
       </Typography>
     </Box>
   );

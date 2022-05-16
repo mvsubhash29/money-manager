@@ -21,7 +21,6 @@ LedgerTile.args = {
   ledger: {
     categoryName: 'Food',
     amount: 100,
-    isExpense: false,
     description: 'Food',
     ledgerType: 'income'
   }

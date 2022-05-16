@@ -20,7 +20,6 @@ export const LedgerDetail = Template.bind({});
 LedgerDetail.args = {
   ledger: {
     amount: 100,
-    isExpense: false,
     description: 'Food',
     ledgerType: 'income',
     categoryName: 'food'

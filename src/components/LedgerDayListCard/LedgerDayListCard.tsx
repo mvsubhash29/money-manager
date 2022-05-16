@@ -11,7 +11,7 @@ import {selectedLedgerEntry} from '../../routes/Dashboard/redux/actions/selected
 import {useStyles} from './LedgerDayListCard.style';
 
 export const LedgerDayListCard = (props: LedgerDetailsType) => {
-  const {date, income, expenses, details} = props;
+  const {date, income, expense, details} = props;
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -40,13 +40,13 @@ export const LedgerDayListCard = (props: LedgerDetailsType) => {
               Income {income}
             </Typography>
           )}
-          {expenses && (
+          {expense && (
             <Typography
               className={classes.title}
               color='textSecondary'
               gutterBottom
             >
-              Expenses {expenses}
+              Expenses {expense}
             </Typography>
           )}
         </Box>

@@ -5,7 +5,7 @@ import {LedgerDetailProps} from './types';
 
 export const LedgerDetail: React.FC<LedgerDetailProps> = (props) => {
   const {onEdit, onBack, date, ledger} = props;
-  const {amount, description, isExpense} = ledger;
+  const {amount, description, ledgerType} = ledger;
 
   const classes = useStyles();
 
@@ -39,7 +39,7 @@ export const LedgerDetail: React.FC<LedgerDetailProps> = (props) => {
           </Grid>
           <Grid item>
             <Typography variant='body2'>
-              {isExpense ? 'Expense' : 'Income'}
+              {ledgerType === 'expense' ? 'Expense' : 'Income'}
             </Typography>
             <Typography variant='body2'>{amount}</Typography>
             <Typography variant='body2'>{date}</Typography>

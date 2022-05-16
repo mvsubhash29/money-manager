@@ -11,7 +11,7 @@ function* fetchCategorySettings() {
   try {
     const response: CategoryResponseType = yield call(fetchCategoryService);
     yield put(fetchCategoriesResolve(response));
-  } catch (e) {
+  } catch (e: any) {
     yield put(fetchCategoriesReject(e));
   }
 }

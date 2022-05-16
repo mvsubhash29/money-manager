@@ -4,6 +4,7 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 import {AppBar} from './components/AppBar/AppBar';
 import {CategorySettingsPage} from './pages/CategorySettings/CategorySettings';
 import {DashboardPage} from './pages/Dashboard/DashboardPage';
+import {InsurancePage} from './pages/Insurance/InsurancePage';
 import {fetchCategories} from './routes/CategorySettings/redux/actions/categorySettings.action';
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path='/dashboard'>
             <DashboardPage />
+          </Route>
+          <Route path='/insurance'>
+            <InsurancePage />
           </Route>
         </Switch>
       </AppBar>

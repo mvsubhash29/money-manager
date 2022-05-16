@@ -6,14 +6,13 @@ export interface LedgerPayloadType {
 export interface LedgerDetailsType {
   date: string;
   income?: number;
-  expenses?: number;
+  expense?: number;
   details: LedgerDailyDetails[];
 }
 
 export interface LedgerDailyDetails {
   description: string;
   amount: number;
-  isExpense: boolean;
   ledgerType: string;
   categoryName: string;
 }
