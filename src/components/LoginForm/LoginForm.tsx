@@ -9,8 +9,8 @@ import {LoginFormPayload} from './types';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const initialValues = {
-    email: 'mvsubhash29@gmail.com',
-    password: 'Dimple#5c3123'
+    email: '',
+    password: ''
   };
 
   const onSubmit = (payload: LoginFormPayload) => {

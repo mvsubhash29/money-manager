@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 import {AppBar} from './components/AppBar/AppBar';
 import {AuthRoute} from './components/AuthRoute/AuthRoute';
@@ -7,12 +7,10 @@ import {CategorySettingsPage} from './pages/CategorySettings/CategorySettings';
 import {DashboardPage} from './pages/Dashboard/DashboardPage';
 import {InsurancePage} from './pages/Insurance/InsurancePage';
 import {LoginPage} from './pages/Login/LoginPage';
-import {RootState} from './redux/types';
 import {fetchCategories} from './routes/CategorySettings/redux/actions/categorySettings.action';
 
 function App() {
   const dispatch = useDispatch();
-  const {isAuthenticated} = useSelector((state: RootState) => state.login);
 
   useEffect(() => {
     dispatch(fetchCategories());

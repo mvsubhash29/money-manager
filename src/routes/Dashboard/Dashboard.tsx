@@ -12,6 +12,7 @@ import {useStyles} from './Dashboard.styles';
 import {ledgerFormSubmit} from './redux/actions/ledgerForm.action';
 import {LedgerDetail} from '../../components/LedgerDetail';
 import {LedgerDayListCard} from '../../components/LedgerDayListCard';
+import {PageHeader} from '../../components/PageHeader';
 
 const initialDashboardState = {
   formMode: 'add',
@@ -22,7 +23,7 @@ const initialDashboardState = {
   },
   formValues: {
     description: '',
-    amount: 0,
+    amount: undefined,
     ledgerType: 'expense',
     categoryName: ''
   },
@@ -90,35 +91,42 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <Paper elevation={0} className={classes.root}>
-      {state.view === 'ldlc' && (
-        <Button onClick={() => dispatch({type: 'ADD_LEDGER_ENTRY'})}>
-          Add
-        </Button>
-      )}
+    <>
+      <PageHeader title='Ledger Entries'>
+        {state.view === 'ldlc' && (
+          <Button
+            variant='outlined'
+            color='primary'
+            onClick={() => dispatch({type: 'ADD_LEDGER_ENTRY'})}
+          >
+            Add
+          </Button>
+        )}
+      </PageHeader>
+      <Paper elevation={0} className={classes.root}>
+        {state.view === 'lf' && (
+          <LedgerForm
+            onCancel={onFormCancel}
+            onSubmit={onFormSubmit}
+            initialValues={state.formValues}
+          />
+        )}
 
-      {state.view === 'lf' && (
-        <LedgerForm
-          onCancel={onFormCancel}
-          onSubmit={onFormSubmit}
-          initialValues={state.formValues}
-        />
-      )}
+        {state.view === 'ldlc' &&
+          ledgerDetails &&
+          ledgerDetails.map((ledgerItem: LedgerDetailsType) => (
+            <LedgerDayListCard {...ledgerItem} key={ledgerItem.date} />
+          ))}
 
-      {state.view === 'ldlc' &&
-        ledgerDetails &&
-        ledgerDetails.map((ledgerItem: LedgerDetailsType) => (
-          <LedgerDayListCard {...ledgerItem} key={ledgerItem.date} />
-        ))}
-
-      {state.view === 'ld' && (
-        <LedgerDetail
-          ledger={ledger}
-          date={date}
-          onBack={onMoneyInfoDetailCardBack}
-          onEdit={onMoneyInfoDetailCardEdit}
-        />
-      )}
-    </Paper>
+        {state.view === 'ld' && (
+          <LedgerDetail
+            ledger={ledger}
+            date={date}
+            onBack={onMoneyInfoDetailCardBack}
+            onEdit={onMoneyInfoDetailCardEdit}
+          />
+        )}
+      </Paper>
+    </>
   );
 };
