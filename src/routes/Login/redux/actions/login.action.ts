@@ -1,3 +1,4 @@
+import {AxiosError} from 'axios';
 import {LoginFormPayload} from '../../../../components/LoginForm/types';
 import {
   LOGIN_SUCCESS,

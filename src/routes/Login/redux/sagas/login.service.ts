@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {LoginFormPayload} from '../../../../components/LoginForm/types';
 import {LoginFormResponse} from '../types';
 
@@ -12,7 +12,7 @@ export function loginService(
     .then((response) => {
       return response.data;
     })
-    .catch((err) => {
-      throw err;
+    .catch((error) => {
+      return error;
     });
 }
